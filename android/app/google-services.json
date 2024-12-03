@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "829624531168",
-    "project_id": "flutter-firebase-b25a5",
-    "storage_bucket": "flutter-firebase-b25a5.firebasestorage.app"
+    "project_number": "1097727424055",
+    "project_id": "quiz-5508e",
+    "storage_bucket": "quiz-5508e.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:829624531168:android:1dace54cbc8cc8f093f885",
+        "mobilesdk_app_id": "1:1097727424055:android:e77bc183bcb87c9ae7f1b2",
         "android_client_info": {
-          "package_name": "com.example.firebase_setup"
+          "package_name": "com.example.quiz_app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAqrv-WH1QNFZ926qbtEe8pyIbvJyiCDoo"
+          "current_key": "AIzaSyCsWh8V3gOoaTxa69Hsm0JaKqbxL2erDX0"
         }
       ],
       "services": {

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'home_page.dart'; // Import HomePage here
 import 'register_page.dart'; // Import RegisterPage
 
 class LoginPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(title: 'Home Page'), 
+            builder: (context) => const HomePage(title: 'Home Page'), // HomePage correctly imported
           ),
         );
       } else {
