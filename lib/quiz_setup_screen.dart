@@ -11,6 +11,16 @@ class _QuizSetupScreenState extends State<QuizSetupScreen> {
   String difficulty = 'easy'; // Default: Easy
   String questionType = 'multiple'; // Default: Multiple Choice
 
+  // List of category names and their corresponding category IDs
+  final Map<String, String> categoryMap = {
+    'General Knowledge': '9',
+    'Entertainment: Film': '11',
+    'Entertainment: Music': '12',
+    'Entertainment: Video Games': '15',
+    'Science: Computers': '18',
+    
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,17 +44,18 @@ class _QuizSetupScreenState extends State<QuizSetupScreen> {
             ),
             Text('Category'),
             DropdownButton<String>(
-              value: category,
+              value: categoryMap.keys.firstWhere(
+                  (key) => categoryMap[key] == category,
+                  orElse: () => 'General Knowledge'),
               onChanged: (String? newValue) {
                 setState(() {
-                  category = newValue!;
+                  category = categoryMap[newValue!]!;
                 });
               },
-              items: <String>['9', '11', '21', '22', '23'] // Example categories
-                  .map<DropdownMenuItem<String>>((String value) {
+              items: categoryMap.keys.map<DropdownMenuItem<String>>((String categoryName) {
                 return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value), // Display category ID here
+                  value: categoryName,
+                  child: Text(categoryName),
                 );
               }).toList(),
             ),
