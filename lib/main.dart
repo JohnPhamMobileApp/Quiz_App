@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart'; // Import for kIsWeb
 import 'login_page.dart';
 import 'home_page.dart';
-import 'package:flutter/foundation.dart'; // Import for kIsWeb
+import 'quiz_setup_screen.dart';  // Import the Quiz Setup Screen
+import 'quiz_screen.dart';        // Import the Quiz Screen
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize Firebase for web and other platforms
   if (kIsWeb) {
     await Firebase.initializeApp(
@@ -24,7 +26,7 @@ void main() async {
   } else {
     await Firebase.initializeApp(); // Initialize for other platforms like Android/iOS
   }
-  
+
   runApp(const MyApp());
 }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase Setup App',
+      title: 'Firebase Quiz App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(title: 'Home Page'),
+        '/quiz_setup': (context) => QuizSetupScreen(), // Add route to Quiz Setup Screen
+        '/quiz': (context) => QuizScreen(), // Add route to Quiz Screen
       },
     );
   }
@@ -53,7 +57,7 @@ class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Listen to Firebase authentication state
-    return StreamBuilder<User?>(
+    return StreamBuilder<User?>( 
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

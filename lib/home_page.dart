@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'login_page.dart'; // Import LoginPage to navigate back to login
+
 
 class HomePage extends StatelessWidget {
   final String title;
 
   const HomePage({super.key, required this.title});
-
-  // Function to handle user sign out
-  Future<void> _signOut(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      // Navigate back to LoginPage after signing out
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error signing out: $e')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +17,20 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Display a greeting message with the user's email
-            Text(
-              'Welcome, ${FirebaseAuth.instance.currentUser?.email ?? 'User'}!',
-              style: const TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            // Sign out button
+            const Text('Welcome to the Quiz App!'),
+            // Button to navigate to the Quiz Setup Screen
             ElevatedButton(
-              onPressed: () => _signOut(context),
-              child: const Text('Sign Out'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/quiz_setup');
+              },
+              child: const Text('Go to Quiz Setup'),
+            ),
+            // Optional: Button to log out (for testing)
+            ElevatedButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+              },
+              child: const Text('Log out'),
             ),
           ],
         ),
