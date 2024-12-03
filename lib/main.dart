@@ -1,6 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  if(kIsWeb){
+    await Firebase.initializeApp(
+    options:const FirebaseOptions(
+    apiKey: "AIzaSyCLs8reG-AQOJqeROq4kAMYKTgPsvEvJaY",
+    authDomain: "quiz-5508e.firebaseapp.com",
+    projectId: "quiz-5508e",
+    storageBucket: "quiz-5508e.firebasestorage.app",
+    messagingSenderId: "1097727424055",
+    appId: "1:1097727424055:web:03adfffa99ae6e06e7f1b2",
+    measurementId: "G-ZHBDP40PEY"));
+  }else{
+   await Firebase.initializeApp();
+  }
+  
+
   runApp(const MyApp());
 }
 

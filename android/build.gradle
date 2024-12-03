@@ -1,3 +1,15 @@
+// Project-level build.gradle file
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.0.2"  // Use a version compatible with your project
+        classpath "com.google.gms:google-services:4.4.2"   // Google Services plugin for Firebase
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -8,8 +20,6 @@ allprojects {
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(":app")
 }
 
